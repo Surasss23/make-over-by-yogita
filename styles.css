@@ -350,12 +350,10 @@ ul {
 }
 
 .gallery-item {
-  position: relative;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: var(--shadow);
-  cursor: pointer;
-  background: var(--color-accent-light);
+  background: white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -364,52 +362,27 @@ ul {
   box-shadow: var(--shadow-lg);
 }
 
-.placeholder-content {
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* Responsive iFrame for Gallery */
+.gallery-item iframe {
+  width: 100%;
+  height: 300px; /* Adjust height as needed */
+  border-radius: 12px 12px 0 0;
+}
+
+.gallery-title {
+  padding: 1rem;
   text-align: center;
-  padding: 1.5rem;
-  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+  background: var(--color-accent-light);
+}
+
+.gallery-title h3 {
+  font-size: 1.5rem;
   color: var(--color-dark);
 }
 
-.placeholder-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  color: var(--color-accent);
-}
-
-.placeholder-text {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.gallery-loading, .reels-loading {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 2rem;
+.gallery-title p {
+  font-size: 1rem;
   color: var(--color-gray);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.loading-spinner {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* Reels Section */
@@ -433,58 +406,43 @@ ul {
 
 .reel-item {
   flex: 0 0 300px;
-  position: relative;
-  overflow: hidden;
   border-radius: 12px;
+  overflow: hidden;
   box-shadow: var(--shadow);
   background: white;
   scroll-snap-align: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.reel-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.reel-placeholder {
-  position: relative;
-  padding-bottom: 177.78%; /* 9:16 Aspect ratio */
-  overflow: hidden;
-  background: linear-gradient(145deg, var(--color-accent-light), var(--color-rosegold));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.reel-placeholder-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  color: white;
+/* Responsive iFrame for Reels */
+.reel-item iframe {
+  width: 100%;
+  height: 400px; /* 9:16 Aspect ratio */
 }
 
 .reel-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   color: white;
-  padding: 1.5rem 1rem 1rem;
+  padding: 1rem;
+  text-align: center;
 }
 
 .reel-title h3 {
   font-size: 1.2rem;
-  margin-bottom: 0.25rem;
 }
 
-.insta-link {
-  margin-top: 2rem;
-  text-align: center;
+/* Loading Spinners */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Booking Section */
