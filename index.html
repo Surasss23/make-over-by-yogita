@@ -1,228 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yogita Makeovers - Professional Makeup Artist</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="logo">Yogita Makeovers</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#reels">Reels</a>
-      <a href="#booking">Book Now</a>
-    </div>
-    <div class="hamburger">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yogita Makeovers - Professional Makeup Artist</title>
+    <meta name="description" content="Professional makeup artist services for all occasions by Yogita Makeovers" />
+    <meta name="author" content="Yogita Makeovers" />
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Yogita Makeovers</h1>
-      <p>Transforming beauty with professional makeup artistry</p>
-      <a href="#booking" class="btn-primary">Book Appointment</a>
-    </div>
-  </section>
+    <meta property="og:title" content="Yogita Makeovers - Professional Makeup Artist" />
+    <meta property="og:description" content="Transform your look with professional makeup services for all occasions" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons (using CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <div class="section-header">
-      <h2>About Yogita</h2>
-      <p>Professional Makeup Artist with a passion for creating stunning looks</p>
-    </div>
-    <div class="about-content">
-      <div class="about-text">
-        <p>With years of experience in the beauty industry, I specialize in bridal makeup, party makeup, and special occasion looks. My approach is personalized to enhance your natural beauty while creating a look that's perfect for your event.</p>
-        <p>I use high-quality, long-lasting products to ensure that you look flawless throughout your special day or event.</p>
-        <div class="about-buttons">
-          <a href="#booking" class="btn-primary">Book a Session</a>
-          <a href="#gallery" class="btn-secondary">View My Work</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <body>
+    <div id="root">
+      <!-- Navbar -->
+      <nav class="navbar" id="navbar">
+        <div class="container-custom">
+          <a href="#home" class="logo">
+            <h1 class="logo-text">Yogita <span class="text-accent">Makeovers</span></h1>
+          </a>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <div class="section-header">
-      <h2>Our Services</h2>
-      <p>Professional makeup services for all your special occasions</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-crown"></i>
-        </div>
-        <h3>Bridal Makeup</h3>
-        <p>Look stunning on your special day with our customized bridal makeup services that last all day.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-glass-cheers"></i>
-        </div>
-        <h3>Party Makeup</h3>
-        <p>Stand out at any party or event with our glamorous makeup looks tailored to your style.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-gem"></i>
-        </div>
-        <h3>Engagement Makeup</h3>
-        <p>Celebrate your engagement with a radiant look that captures your joy and excitement.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-spa"></i>
-        </div>
-        <h3>Natural Makeup</h3>
-        <p>Enhance your natural beauty with our subtle, fresh-faced makeup approach.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <h3>Special Occasion</h3>
-        <p>From graduations to anniversaries, look your best for any special moment.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-camera"></i>
-        </div>
-        <h3>Photoshoot Makeup</h3>
-        <p>Camera-ready looks designed to shine in photographs and videos.</p>
-      </div>
-    </div>
-  </section>
+          <!-- Desktop menu -->
+          <div class="desktop-menu">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#reels" class="nav-link">Reels</a>
+            <a href="#booking" class="nav-link">Book Now</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="nav-link" aria-label="Instagram">
+              <i data-lucide="instagram"></i>
+            </a>
+          </div>
 
-  <!-- Gallery Section -->
-  <section id="gallery" class="gallery">
-    <div class="section-header">
-      <h2>Portfolio Gallery</h2>
-      <p>Browse through our stunning collection of makeovers</p>
-    </div>
-    <div class="gallery-loading">Loading gallery images...</div>
-    <div id="gallery-container" class="gallery-grid"></div>
-  </section>
-
-  <!-- Reels Section -->
-  <section id="reels" class="reels">
-    <div class="section-header">
-      <h2>Makeup Reels</h2>
-      <p>Watch our latest makeup tutorials and transformations</p>
-    </div>
-    <div class="reels-loading">Loading latest reels...</div>
-    <div id="reels-container" class="reels-container"></div>
-    <div class="insta-link">
-      <a href="https://www.instagram.com/yogita._.makeovers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="btn-primary">
-        <i class="fab fa-instagram"></i> Follow on Instagram
-      </a>
-    </div>
-  </section>
-
-  <!-- Booking Section -->
-  <section id="booking" class="booking">
-    <div class="section-header">
-      <h2>Book Your Session</h2>
-      <p>Fill out the form below to book your makeup appointment</p>
-    </div>
-    <form id="appointment-form" class="booking-form">
-      <div class="form-group">
-        <label for="name">Your Name *</label>
-        <input type="text" id="name" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number *</label>
-        <input type="tel" id="phone" required>
-      </div>
-      <div class="form-group">
-        <label for="service">Service Type *</label>
-        <select id="service" required>
-          <option value="" disabled selected>Select a service</option>
-          <option value="Bridal Makeup">Bridal Makeup</option>
-          <option value="Party Makeup">Party Makeup</option>
-          <option value="Engagement Makeup">Engagement Makeup</option>
-          <option value="Natural Makeup">Natural Makeup</option>
-          <option value="Special Occasion">Special Occasion</option>
-          <option value="Photoshoot Makeup">Photoshoot Makeup</option>
-          <option value="Others">Others Makeup</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="form-group half">
-          <label for="date">Date *</label>
-          <input type="date" id="date" required>
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
         </div>
-        <div class="form-group half">
-          <label for="time">Time *</label>
-          <select id="time" required>
-            <option value="" disabled selected>Select a time</option>
-            <option value="9:00 AM">9:00 AM</option>
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="1:00 PM">1:00 PM</option>
-            <option value="2:00 PM">2:00 PM</option>
-            <option value="3:00 PM">3:00 PM</option>
-            <option value="4:00 PM">4:00 PM</option>
-            <option value="5:00 PM">5:00 PM</option>
-            <option value="6:00 PM">6:00 PM</option>
-            <option value="7:00 PM">7:00 PM</option>
-          </select>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu">
+          <div class="mobile-menu-container">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#gallery" class="mobile-nav-link">Gallery</a>
+            <a href="#reels" class="mobile-nav-link">Reels</a>
+            <a href="#booking" class="mobile-nav-link">Book Now</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">
+              <i data-lucide="instagram"></i>
+              <span>Instagram</span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="message">Additional Notes</label>
-        <textarea id="message" rows="4"></textarea>
-      </div>
-      <button type="submit" id="whatsapp-btn" class="btn-primary">
-        <i class="fab fa-whatsapp"></i> Send Booking Request via WhatsApp
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="decorative-circle top-right"></div>
+        <div class="decorative-circle bottom-left"></div>
+        
+        <div class="container-custom">
+          <div class="hero-content">
+            <div class="hero-text">
+              <span class="badge animate-fade-in">Professional Makeup Artist</span>
+              <h1 class="hero-title animate-fade-in-delay-1">
+                Enhance Your <br />
+                <span class="text-accent">Natural Beauty</span>
+              </h1>
+              <p class="hero-subtitle animate-fade-in-delay-2">
+                Transform your look with professional makeup services tailored to your unique style and occasion. Showcasing artistry that enhances your natural beauty.
+              </p>
+              
+              <div class="hero-buttons animate-fade-in-delay-3">
+                <button class="btn btn-primary" onclick="scrollToSection('booking')">Book Now</button>
+                <button class="btn btn-outline" onclick="scrollToSection('gallery')">View Portfolio</button>
+              </div>
+            </div>
+            
+            <div class="hero-image animate-fade-in-delay-2">
+              <div class="image-container">
+                <div class="image-background"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
+                  alt="Professional Makeup Application" 
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-down">
+            <a href="#gallery">
+              <i data-lucide="chevron-down"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section id="gallery" class="section-padding">
+        <div class="container-custom">
+          <div class="section-header">
+            <span class="badge">Portfolio</span>
+            <h2 class="section-title">Makeup Gallery</h2>
+            <p class="section-subtitle">
+              Explore our collection of stunning makeup transformations
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Gallery images will be added dynamically via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Reels Section -->
+      <section id="reels" class="section-padding bg-pearl">
+        <div class="container-custom">
+          <div class="section-header">
+            <span class="badge">Videos</span>
+            <h2 class="section-title">Makeup Reels</h2>
+            <p class="section-subtitle">
+              Watch our latest makeup transformations and behind-the-scenes moments
+            </p>
+          </div>
+
+          <div class="reels-grid">
+            <!-- Reels will be added dynamically via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking Section -->
+      <section id="booking" class="section-padding bg-pearl-light">
+        <div class="container-custom">
+          <div class="section-header">
+            <span class="badge">Booking</span>
+            <h2 class="section-title">Book Your Appointment</h2>
+            <p class="section-subtitle">
+              Schedule your makeup session with ease and get ready to transform your look
+            </p>
+          </div>
+
+          <div class="booking-container">
+            <div class="booking-form-container">
+              <div class="glass-card">
+                <form id="booking-form" class="booking-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="name">Your Name</label>
+                      <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="email">Email Address (Optional)</label>
+                      <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="service">Makeup Service</label>
+                    <select id="service" required>
+                      <option value="" disabled selected>Select a service</option>
+                      <option value="Bridal Makeup">Bridal Makeup</option>
+                      <option value="Party Makeup">Party Makeup</option>
+                      <option value="Engagement Makeup">Engagement Makeup</option>
+                      <option value="HD Makeup">HD Makeup</option>
+                      <option value="Fashion Show Makeup">Fashion Show Makeup</option>
+                      <option value="Natural Makeup">Natural Makeup</option>
+                    </select>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="date">Preferred Date</label>
+                      <input type="date" id="date" required min="">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="time">Preferred Time</label>
+                      <select id="time" required>
+                        <option value="" disabled selected>Select time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="12:00 PM">12:00 PM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                        <option value="5:00 PM">5:00 PM</option>
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="notes">Additional Notes (Optional)</label>
+                    <textarea id="notes" placeholder="Tell us about your special requirements or questions" rows="3"></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary btn-full">
+                    <i data-lucide="send" class="btn-icon"></i>
+                    Send Booking Request
+                  </button>
+                  
+                  <p class="form-note">
+                    Your request will be sent via WhatsApp. We'll confirm your booking as soon as possible.
+                  </p>
+                </form>
+              </div>
+            </div>
+            
+            <div class="booking-info">
+              <div class="glass-card">
+                <h3 class="card-title">Makeup Services</h3>
+                <div class="services-grid">
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>Bridal Makeup</span>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>Party Makeup</span>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>Engagement Makeup</span>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>HD Makeup</span>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>Fashion Show Makeup</span>
+                  </div>
+                  <div class="service-item">
+                    <div class="service-dot"></div>
+                    <span>Natural Makeup</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="glass-card">
+                <h3 class="card-title">Why Choose Us?</h3>
+                <ul class="feature-list">
+                  <li class="feature-item">
+                    <div class="feature-icon">
+                      <div class="feature-dot"></div>
+                    </div>
+                    <span>Professional and experienced makeup artist</span>
+                  </li>
+                  <li class="feature-item">
+                    <div class="feature-icon">
+                      <div class="feature-dot"></div>
+                    </div>
+                    <span>Premium and high-quality makeup products</span>
+                  </li>
+                  <li class="feature-item">
+                    <div class="feature-icon">
+                      <div class="feature-dot"></div>
+                    </div>
+                    <span>Customized makeup look according to your preference</span>
+                  </li>
+                  <li class="feature-item">
+                    <div class="feature-icon">
+                      <div class="feature-dot"></div>
+                    </div>
+                    <span>Hygienic and sanitized makeup tools and brushes</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container-custom">
+          <div class="footer-content">
+            <div class="footer-brand">
+              <a href="#home">
+                <h2 class="footer-logo">Yogita <span class="text-accent">Makeovers</span></h2>
+              </a>
+              <p class="footer-description">
+                Professional makeup services for all occasions. Enhancing your natural beauty with premium products and expert techniques.
+              </p>
+              <div class="social-links">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <i data-lucide="instagram"></i>
+                </a>
+                <a href="mailto:example@email.com" target="_blank" rel="noopener noreferrer" aria-label="Email">
+                  <i data-lucide="mail"></i>
+                </a>
+                <a href="tel:+917032985242" target="_blank" rel="noopener noreferrer" aria-label="Phone">
+                  <i data-lucide="phone"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-links">
+              <div class="footer-links-column">
+                <h3 class="footer-links-title">Quick Links</h3>
+                <ul class="footer-links-list">
+                  <li><a href="#home">Home</a></li>
+                  <li><a href="#gallery">Gallery</a></li>
+                  <li><a href="#reels">Reels</a></li>
+                  <li><a href="#booking">Book Now</a></li>
+                </ul>
+              </div>
+
+              <div class="footer-links-column">
+                <h3 class="footer-links-title">Services</h3>
+                <ul class="footer-links-list">
+                  <li>Bridal Makeup</li>
+                  <li>Party Makeup</li>
+                  <li>Engagement Makeup</li>
+                  <li>HD Makeup</li>
+                </ul>
+              </div>
+
+              <div class="footer-links-column">
+                <h3 class="footer-links-title">Contact</h3>
+                <ul class="footer-contact-list">
+                  <li>
+                    <i data-lucide="phone" class="contact-icon"></i>
+                    <span>+91 7032985242</span>
+                  </li>
+                  <li>
+                    <i data-lucide="mail" class="contact-icon"></i>
+                    <span>example@email.com</span>
+                  </li>
+                  <li>
+                    <i data-lucide="instagram" class="contact-icon"></i>
+                    <span>@yogita_makeovers</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="copyright">
+              © <span id="current-year"></span> Yogita Makeovers. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Scroll To Top Button -->
+      <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+        <i data-lucide="chevron-up"></i>
       </button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <h3>Yogita Singh</h3>
-        <p>Professional Makeup Artist</p>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/yogita._.makeovers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#reels">Reels</a></li>
-          <li><a href="#booking">Book Now</a></li>
-        </ul>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact Info</h4>
-        <p><i class="fas fa-phone"></i> +91 7032985242</p>
-        <p><i class="fas fa-envelope"></i> yogitamakeoverssupport@.com</p>
-        <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
-      </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Made By Laksh Gleam Services. All rights reserved.</p>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
-</body>
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </body>
 </html>
