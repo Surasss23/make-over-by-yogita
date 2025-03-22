@@ -132,7 +132,7 @@ function createPlaceholderReels() {
 // Populate gallery with items
 async function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pubhtml', 'gallery!A2:D');
+  const data = await fetchFromSheet('your-sheet-id', 'gallery!A2:D');
   
   if (data.length === 0) {
     galleryContainer.innerHTML = '<p class="no-data">No gallery items found.</p>';
@@ -162,7 +162,7 @@ async function populateGallery() {
 // Populate reels section with items
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pubhtml', 'reels!A2:D');
+  const data = await fetchFromSheet('your-sheet-id', 'reels!A2:D');
   
   if (data.length === 0) {
     reelsContainer.innerHTML = '<p class="no-data">No reels found.</p>';
