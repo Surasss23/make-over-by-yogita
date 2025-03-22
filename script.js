@@ -162,7 +162,7 @@ async function populateGallery() {
 // Populate reels section with items
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/1SjAZZdpTrapGwI7s6-Y49fSvrwT_ypBgLm5gcWWGilc/edit?usp=sharing', 'reels!A2:D');
+  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv', 'reels!A2:D');
   
   if (data.length === 0) {
     reelsContainer.innerHTML = '<p class="no-data">No reels found.</p>';
