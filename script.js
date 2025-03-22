@@ -60,7 +60,7 @@ document.getElementById("appointment-form").addEventListener("submit", function(
   }
 
   const encodedMessage = encodeURIComponent(whatsappMessage);
-  const whatsappURL = `https://wa.me/917989386499?text=${encodedMessage}`;
+  const whatsappURL = `https://wa.me/917032985242?text=${encodedMessage}`;
 
   window.open(whatsappURL, '_blank');
 });
