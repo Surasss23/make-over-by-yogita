@@ -1,177 +1,272 @@
-// Mobile Navigation
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
-
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-
-  const icon = hamburger.querySelector("i");
-  if (navLinks.classList.contains("active")) {
-    icon.classList.replace("fa-bars", "fa-times");
-  } else {
-    icon.classList.replace("fa-times", "fa-bars");
-  }
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-    hamburger.querySelector("i").classList.replace("fa-times", "fa-bars");
-  }
-});
-
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
-
-// WhatsApp Form Submission
-const appointmentForm = document.getElementById("appointment-form");
-if (appointmentForm) {
-  appointmentForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const service = document.getElementById("service").value;
-    const date = document.getElementById("date").value;
-    const time = document.getElementById("time").value;
-    const message = document.getElementById("message").value;
-
-    if (!name || !phone || !service || !date || !time) {
-      alert("Please fill all required fields.");
-      return;
-    }
-
-    // Validate phone number
-    const phoneRegex = /^\+?[0-9]{10,14}$/;
-    if (!phoneRegex.test(phone)) {
-      alert("Please enter a valid phone number.");
-      return;
-    }
-
-    const dateObj = new Date(date);
-    const formattedDate = dateObj.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Lucide icons
+  lucide.createIcons();
+  
+  // Set current year in footer
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+  
+  // Mobile menu functionality
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function() {
+      document.body.classList.toggle('mobile-menu-open');
     });
-
-    let whatsappMessage = `*Booking Request from Yogita Makeovers Website*\n\n`;
-    whatsappMessage += `*Name:* ${name}\n`;
-    whatsappMessage += `*Phone:* ${phone}\n`;
-    whatsappMessage += `*Service:* ${service}\n`;
-    whatsappMessage += `*Date:* ${formattedDate}\n`;
-    whatsappMessage += `*Time:* ${time}\n`;
-
-    if (message) {
-      whatsappMessage += `*Additional Notes:* ${message}\n`;
+  }
+  
+  // Close mobile menu when clicking on a link
+  const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      document.body.classList.remove('mobile-menu-open');
+    });
+  });
+  
+  // Navbar background on scroll
+  const navbar = document.getElementById('navbar');
+  
+  function toggleNavbarBackground() {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
-
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappURL = `https://wa.me/917032985242?text=${encodedMessage}`;
-
-    window.location.href = whatsappURL;
+  }
+  
+  window.addEventListener('scroll', toggleNavbarBackground);
+  toggleNavbarBackground(); // Initial check
+  
+  // Scroll to top button
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  
+  function toggleScrollToTopBtn() {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.add('visible');
+    } else {
+      scrollToTopBtn.classList.remove('visible');
+    }
+  }
+  
+  window.addEventListener('scroll', toggleScrollToTopBtn);
+  toggleScrollToTopBtn(); // Initial check
+  
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      
+      if (href !== '#') {
+        e.preventDefault();
+        const targetElement = document.querySelector(href);
+        
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+          
+          // Update URL without page jump
+          history.pushState({}, '', href);
+        }
+      }
+    });
   });
-}
+  
+  // Helper function to scroll to a section
+  window.scrollToSection = function(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
+  // Set minimum date for date picker to today
+  const dateInput = document.getElementById('date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  }
+  
+  // Setup gallery
+  setupGallery();
+  
+  // Setup reels
+  setupReels();
+  
+  // Booking form submission
+  const bookingForm = document.getElementById('booking-form');
+  
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const notes = document.getElementById('notes').value;
+      
+      if (!name || !service || !date || !time) {
+        alert("Please fill in all required fields (name, service, date, and time)");
+        return;
+      }
+      
+      // Format date for better readability
+      const formatDate = function(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      };
+      
+      // Format the WhatsApp message
+      const message = `Hello Yogita! 👋
+I'd like to book a makeup appointment:
 
-// Manually Populate Gallery
-function populateGallery() {
-  const galleryContainer = document.getElementById('gallery-container');
-  galleryContainer.innerHTML = ''; // Clear loading message
+Name: ${name}
+Service: ${service}
+Date: ${formatDate(date)}
+Time: ${time}
+${notes ? `Notes: ${notes}` : ""}
 
-  const galleryData = [
+Thank you!`;
+      
+      // Create WhatsApp URL with phone number and encoded message
+      // Directly open WhatsApp with the message
+      // Note: Using encodeURIComponent for proper URL encoding
+      const whatsappUrl = `https://wa.me/917032985242?text=${encodeURIComponent(message)}`;
+      
+      // Open in new tab (this is more reliable than window.location)
+      window.open(whatsappUrl, "_blank");
+    });
+  }
+});
+
+// Gallery setup
+function setupGallery() {
+  const galleryContainer = document.querySelector('.gallery-grid');
+  
+  if (!galleryContainer) return;
+  
+  const galleryImages = [
     {
-      title: "Makeover 1",
-      category: "Bridal",
-      imageUrl: "https://i.ibb.co/tpNzR0gs/image.png",
-      redirectUrl: "https://example.com/makeover1"
+      src: 'https://images.unsplash.com/photo-1503305189797-32c5cb3b6693',
+      title: 'Bridal Makeup',
+      category: 'Wedding'
     },
     {
-      title: "Makeover 2",
-      category: "Party",
-      imageUrl: "https://i.ibb.co/8nQngPcm/image.png",
-      redirectUrl: "https://example.com/makeover2"
+      src: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8',
+      title: 'Party Makeup',
+      category: 'Event'
     },
     {
-      title: "Makeover 3",
-      category: "Casual",
-      imageUrl: "https://i.ibb.co/vCPhN2kD/image.png",
-      redirectUrl: "https://example.com/makeover3"
+      src: 'https://images.unsplash.com/photo-1516914589923-f105f1535f88',
+      title: 'HD Makeup',
+      category: 'Professional'
     },
-    // Add more items as needed
+    {
+      src: 'https://images.unsplash.com/photo-1526045478516-99145907023c',
+      title: 'Natural Look',
+      category: 'Everyday'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1588367166326-dd08e9134be0',
+      title: 'Engagement Makeup',
+      category: 'Engagement'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1465463181267-1fb25be32990',
+      title: 'Fashion Makeup',
+      category: 'Fashion'
+    }
   ];
-
-  galleryData.forEach(item => {
-    const galleryItem = document.createElement('div');
-    galleryItem.className = 'gallery-item';
-
-    galleryItem.innerHTML = `
-      <a href="${item.redirectUrl}" target="_blank">
-        <div class="image-container">
-          <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" loading="lazy" onerror="this.src='fallback.jpg';">
-        </div>
-        <p class="gallery-text">${item.title}</p>
-        <small>${item.category}</small>
-      </a>
+  
+  galleryImages.forEach((image, index) => {
+    const delay = index * 0.1;
+    const item = document.createElement('div');
+    item.className = 'gallery-item animate-scale-in';
+    item.style.animationDelay = `${delay}s`;
+    
+    item.innerHTML = `
+      <img src="${image.src}" alt="${image.title}" loading="lazy">
+      <div class="gallery-overlay">
+        <h3 class="gallery-title">${image.title}</h3>
+        <p class="gallery-category">${image.category}</p>
+      </div>
     `;
-
-    galleryContainer.appendChild(galleryItem);
+    
+    galleryContainer.appendChild(item);
   });
 }
 
-// Manually Populate Reels
-function populateReels() {
-  const reelsContainer = document.getElementById('reels-container');
-  reelsContainer.innerHTML = ''; // Clear loading message
-
+// Reels setup
+function setupReels() {
+  const reelsContainer = document.querySelector('.reels-grid');
+  
+  if (!reelsContainer) return;
+  
   const reelsData = [
     {
-      title: "Reel 1",
-      category: "Tutorial",
-      imageUrl: "https://i.ibb.co/vvqG50bn/image.png",
-      redirectUrl: "https://example.com/reel1"
+      thumbnail: 'https://i.ibb.co/p67Bb74L/image.png',
+      title: 'Bridal Makeup Tutorial',
+      link: 'https://www.instagram.com/'
     },
     {
-      title: "Reel 2",
-      category: "Transformation",
-      imageUrl: "https://i.ibb.co/WWkjXFFn/image.png",
-      redirectUrl: "https://example.com/reel2"
+      thumbnail: 'https://images.unsplash.com/photo-1560932503-5a9e5f0858b9',
+      title: 'Evening Glam Transformation',
+      link: 'https://www.instagram.com/'
     },
     {
-      title: "Reel 3",
-      category: "Bridal Look",
-      imageUrl: "https://i.ibb.co/p67Bb74L/image.png",
-      redirectUrl: "https://example.com/reel3"
+      thumbnail: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796',
+      title: 'Natural Makeup Look',
+      link: 'https://www.instagram.com/'
     },
-    // Add more items as needed
+    {
+      thumbnail: 'https://images.unsplash.com/photo-1604872441539-ef1db9b25f92',
+      title: 'Behind The Scenes',
+      link: 'https://www.instagram.com/'
+    },
+    {
+      thumbnail: 'https://images.unsplash.com/photo-1607083681678-52733140f93a',
+      title: 'Product Review',
+      link: 'https://www.instagram.com/'
+    },
+    {
+      thumbnail: 'https://images.unsplash.com/photo-1522337094846-8a818192de1f',
+      title: 'Client Testimonial',
+      link: 'https://www.instagram.com/'
+    }
   ];
-
-  reelsData.forEach(item => {
-    const reelItem = document.createElement('div');
-    reelItem.className = 'reel-item';
-
-    reelItem.innerHTML = `
-      <a href="${item.redirectUrl}" target="_blank">
-        <div class="image-container">
-          <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" loading="lazy" onerror="this.src='fallback.jpg';">
-        </div>
-        <h3>${item.title}</h3>
-        <p>${item.category}</p>
-      </a>
+  
+  reelsData.forEach((reel, index) => {
+    const delay = index * 0.1;
+    const item = document.createElement('div');
+    item.className = 'reel-item animate-scale-in';
+    item.style.animationDelay = `${delay}s`;
+    
+    item.innerHTML = `
+      <img src="${reel.thumbnail}" alt="${reel.title}" class="reel-thumbnail" loading="lazy">
+      <div class="reel-play-button">
+        <i data-lucide="play"></i>
+      </div>
+      <div class="reel-title">${reel.title}</div>
     `;
-
-    reelsContainer.appendChild(reelItem);
+    
+    item.addEventListener('click', function() {
+      window.open(reel.link, '_blank');
+    });
+    
+    reelsContainer.appendChild(item);
   });
+  
+  // Initialize any new icons that were added dynamically
+  lucide.createIcons();
 }
-
-// Initialize the page
-window.addEventListener('DOMContentLoaded', () => {
-  populateGallery();
-  populateReels();
-});
