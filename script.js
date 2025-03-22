@@ -17,7 +17,7 @@ document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", () => {
     navLinks.classList.remove("active");
     hamburger.querySelector("i").classList.replace("fa-times", "fa-bars");
-  });
+  }
 });
 
 window.addEventListener("scroll", () => {
@@ -80,84 +80,90 @@ if (appointmentForm) {
   });
 }
 
-// Function to fetch data from Google Sheets using CSV link
-async function fetchCSVData(sheetURL) {
-  try {
-    const response = await fetch(sheetURL);
-    const text = await response.text();
-    const rows = text.split("\n").slice(1);
-
-    return rows.map(row => {
-      const columns = row.split(",");
-      return {
-        title: columns[0]?.replace(/"/g, '') || '',
-        category: columns[1]?.replace(/"/g, '') || '',
-        imageUrl: columns[2]?.replace(/"/g, '') || '',
-        redirectUrl: columns[3]?.replace(/"/g, '') || ''
-      };
-    });
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return [];
-  }
-}
-
-// Populate gallery
-async function populateGallery() {
+// Manually Populate Gallery
+function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
-  galleryContainer.innerHTML = '<div class="loading-spinner"></div>'; // Show spinner
+  galleryContainer.innerHTML = ''; // Clear loading message
 
-  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pub?output=csv";
-  const data = await fetchCSVData(sheetURL);
+  const galleryData = [
+    {
+      title: "Makeover 1",
+      category: "Bridal",
+      imageUrl: "https://i.ibb.co/tpNzR0gs/image.png",
+      redirectUrl: "https://example.com/makeover1"
+    },
+    {
+      title: "Makeover 2",
+      category: "Party",
+      imageUrl: "https://i.ibb.co/8nQngPcm/image.png",
+      redirectUrl: "https://example.com/makeover2"
+    },
+    {
+      title: "Makeover 3",
+      category: "Casual",
+      imageUrl: "https://i.ibb.co/vCPhN2kD/image.png",
+      redirectUrl: "https://example.com/makeover3"
+    },
+    // Add more items as needed
+  ];
 
-  if (data.length === 0) {
-    galleryContainer.innerHTML = '<p class="no-data">No gallery items found.</p>';
-    return;
-  }
-
-  galleryContainer.innerHTML = ''; // Clear spinner
-
-  data.forEach(item => {
+  galleryData.forEach(item => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
 
     galleryItem.innerHTML = `
-      <div class="image-container">
-        <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" loading="lazy" onerror="this.src='fallback.jpg';">
-      </div>
-      <p class="gallery-text">${item.title}</p>
-      <small>${item.category}</small>
+      <a href="${item.redirectUrl}" target="_blank">
+        <div class="image-container">
+          <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" loading="lazy" onerror="this.src='fallback.jpg';">
+        </div>
+        <p class="gallery-text">${item.title}</p>
+        <small>${item.category}</small>
+      </a>
     `;
 
     galleryContainer.appendChild(galleryItem);
   });
 }
 
-// Populate reels
-async function populateReels() {
+// Manually Populate Reels
+function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
-  reelsContainer.innerHTML = '<div class="loading-spinner"></div>'; // Show spinner
+  reelsContainer.innerHTML = ''; // Clear loading message
 
-  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv";
-  const data = await fetchCSVData(sheetURL);
+  const reelsData = [
+    {
+      title: "Reel 1",
+      category: "Tutorial",
+      imageUrl: "https://i.ibb.co/vvqG50bn/image.png",
+      redirectUrl: "https://example.com/reel1"
+    },
+    {
+      title: "Reel 2",
+      category: "Transformation",
+      imageUrl: "https://i.ibb.co/WWkjXFFn/image.png",
+      redirectUrl: "https://example.com/reel2"
+    },
+    {
+      title: "Reel 3",
+      category: "Bridal Look",
+      imageUrl: "https://i.ibb.co/p67Bb74L/image.png",
+      redirectUrl: "https://example.com/reel3"
+    },
+    // Add more items as needed
+  ];
 
-  if (data.length === 0) {
-    reelsContainer.innerHTML = '<p class="no-data">No reels found.</p>';
-    return;
-  }
-
-  reelsContainer.innerHTML = ''; // Clear spinner
-
-  data.forEach(item => {
+  reelsData.forEach(item => {
     const reelItem = document.createElement('div');
     reelItem.className = 'reel-item';
 
     reelItem.innerHTML = `
-      <div class="image-container">
-        <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" loading="lazy" onerror="this.src='fallback.jpg';">
-      </div>
-      <h3>${item.title}</h3>
-      <p>${item.category}</p>
+      <a href="${item.redirectUrl}" target="_blank">
+        <div class="image-container">
+          <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" loading="lazy" onerror="this.src='fallback.jpg';">
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.category}</p>
+      </a>
     `;
 
     reelsContainer.appendChild(reelItem);
