@@ -106,7 +106,7 @@ async function populateGallery() {
 
     galleryItem.innerHTML = `
       <a href="${item.redirectUrl}" target="_blank">
-        <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img">
+        <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" onerror="this.src='fallback.jpg';">
       </a>
       <p class="gallery-text">${item.title}</p>
       <small>${item.category}</small>
@@ -135,7 +135,7 @@ async function populateReels() {
 
     reelItem.innerHTML = `
       <a href="${item.redirectUrl}" target="_blank">
-        <img src="${item.imageUrl}" alt="${item.title}" class="reel-img">
+        <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" onerror="this.src='fallback.jpg';">
       </a>
       <h3>${item.title}</h3>
       <p>${item.category}</p>
