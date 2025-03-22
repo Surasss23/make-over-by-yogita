@@ -122,9 +122,9 @@ async function populateGallery() {
     galleryItem.className = 'gallery-item';
 
     galleryItem.innerHTML = `
-      <a href="${item.redirectUrl}" target="_blank">
-        <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" onerror="this.src='fallback.jpg';">
-      </a>
+      <div class="image-container">
+        <img src="${item.imageUrl}" alt="${item.title}" class="gallery-img" loading="lazy" onerror="this.src='fallback.jpg';">
+      </div>
       <p class="gallery-text">${item.title}</p>
       <small>${item.category}</small>
     `;
@@ -153,9 +153,9 @@ async function populateReels() {
     reelItem.className = 'reel-item';
 
     reelItem.innerHTML = `
-      <a href="${item.redirectUrl}" target="_blank">
-        <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" onerror="this.src='fallback.jpg';">
-      </a>
+      <div class="image-container">
+        <img src="${item.imageUrl}" alt="${item.title}" class="reel-img" loading="lazy" onerror="this.src='fallback.jpg';">
+      </div>
       <h3>${item.title}</h3>
       <p>${item.category}</p>
     `;
