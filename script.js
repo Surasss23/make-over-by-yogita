@@ -47,6 +47,13 @@ if (appointmentForm) {
       return;
     }
 
+    // Validate phone number
+    const phoneRegex = /^\+?[0-9]{10,14}$/;
+    if (!phoneRegex.test(phone)) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
     const dateObj = new Date(date);
     const formattedDate = dateObj.toLocaleDateString('en-US', {
       weekday: 'long',
@@ -98,6 +105,8 @@ async function fetchCSVData(sheetURL) {
 // Populate gallery
 async function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
+  galleryContainer.innerHTML = '<div class="loading-spinner"></div>'; // Show spinner
+
   const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pub?output=csv";
   const data = await fetchCSVData(sheetURL);
 
@@ -106,7 +115,7 @@ async function populateGallery() {
     return;
   }
 
-  galleryContainer.innerHTML = '';
+  galleryContainer.innerHTML = ''; // Clear spinner
 
   data.forEach(item => {
     const galleryItem = document.createElement('div');
@@ -124,16 +133,11 @@ async function populateGallery() {
   });
 }
 
-// Prevent flickering by fixing image height before loading
-const images = document.querySelectorAll('.gallery-img');
-images.forEach(img => {
-  img.style.minHeight = '200px'; // Adjust as per your design
-  img.style.objectFit = 'cover';
-});
-
 // Populate reels
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
+  reelsContainer.innerHTML = '<div class="loading-spinner"></div>'; // Show spinner
+
   const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv";
   const data = await fetchCSVData(sheetURL);
 
@@ -142,7 +146,7 @@ async function populateReels() {
     return;
   }
 
-  reelsContainer.innerHTML = '';
+  reelsContainer.innerHTML = ''; // Clear spinner
 
   data.forEach(item => {
     const reelItem = document.createElement('div');
