@@ -129,64 +129,79 @@ function createPlaceholderReels() {
   return reelItems;
 }
 
-// Populate gallery with items
+// Fetch data from Google Sheet
+async function fetchFromSheet(sheetURL) {
+  try {
+    const response = await fetch(sheetURL);
+    const text = await response.text();
+    const rows = text.split('\n').slice(1); // Skip header
+
+    return rows.map(row => {
+      const columns = row.split(',');
+      return {
+        title: columns[0],
+        category: columns[1] || '',
+        description: columns[2] || '',
+        mediaUrl: columns[3] ? columns[3].trim() : null
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return [];
+  }
+}
+
+// Populate Gallery Section
 async function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/15bnkKkot4S_sRkqEBMd2QaXCO213qY-weytGVoj4uEw/edit?usp=sharing', 'gallery!A2:D');
-  
+  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pub?output=csv');
+
   if (data.length === 0) {
     galleryContainer.innerHTML = '<p class="no-data">No gallery items found.</p>';
     return;
   }
   
-  // Clear loading message
   galleryContainer.innerHTML = '';
   
-  // Add gallery items
   data.forEach(item => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     
     galleryItem.innerHTML = `
-      <div class="placeholder-content">
-        <i class="fas fa-image placeholder-icon"></i>
-        <p class="placeholder-text">${item.title}</p>
-        <small>${item.category}</small>
-      </div>
+      <img src="${item.mediaUrl}" alt="${item.title}" class="gallery-image" onerror="this.src='fallback.jpg';"/>
+      <div class="gallery-title">${item.title}</div>
+      <p>${item.description}</p>
+      <small>${item.category}</small>
     `;
-    
     galleryContainer.appendChild(galleryItem);
   });
 }
 
-// Populate reels section with items
+// Populate Reels Section
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv', 'reels!A2:D');
-  
+  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv');
+
   if (data.length === 0) {
     reelsContainer.innerHTML = '<p class="no-data">No reels found.</p>';
     return;
   }
-  
-  // Clear loading message
+
   reelsContainer.innerHTML = '';
   
-  // Add reel items
   data.forEach(item => {
     const reelItem = document.createElement('div');
     reelItem.className = 'reel-item';
     
     reelItem.innerHTML = `
-      <div class="reel-placeholder">
+      <a href="${item.mediaUrl}" target="_blank">
         <i class="fas fa-video reel-placeholder-icon"></i>
-      </div>
+      </a>
       <div class="reel-title">
         <h3>${item.title}</h3>
         <p>${item.description}</p>
       </div>
     `;
-    
     reelsContainer.appendChild(reelItem);
   });
 }
@@ -195,11 +210,8 @@ async function populateReels() {
 window.addEventListener('DOMContentLoaded', () => {
   populateGallery();
   populateReels();
-  
-  // Add loading spinners
-  document.querySelector('.gallery-loading').innerHTML = '<span class="loading-spinner"></span> Loading gallery...';
-  document.querySelector('.reels-loading').innerHTML = '<span class="loading-spinner"></span> Loading reels...';
 });
+
 
 // Add smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
