@@ -90,7 +90,7 @@ async function fetchCSVData(sheetURL) {
 // Populate gallery
 async function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
-  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pubhtml";
+  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pub?output=csv";
   const data = await fetchCSVData(sheetURL);
 
   if (data.length === 0) {
@@ -119,7 +119,7 @@ async function populateGallery() {
 // Populate reels
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
-  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pubhtml";
+  const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv";
   const data = await fetchCSVData(sheetURL);
 
   if (data.length === 0) {
