@@ -30,40 +30,48 @@ window.addEventListener("scroll", () => {
 });
 
 // WhatsApp Form Submission
-document.getElementById("appointment-form").addEventListener("submit", function(e) {
-  e.preventDefault();
+const appointmentForm = document.getElementById("appointment-form");
+if (appointmentForm) {
+  appointmentForm.addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const service = document.getElementById("service").value;
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
-  const message = document.getElementById("message").value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const service = document.getElementById("service").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const message = document.getElementById("message").value;
 
-  const dateObj = new Date(date);
-  const formattedDate = dateObj.toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    if (!name || !phone || !service || !date || !time) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    const dateObj = new Date(date);
+    const formattedDate = dateObj.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    let whatsappMessage = `*Booking Request from Yogita Makeovers Website*\n\n`;
+    whatsappMessage += `*Name:* ${name}\n`;
+    whatsappMessage += `*Phone:* ${phone}\n`;
+    whatsappMessage += `*Service:* ${service}\n`;
+    whatsappMessage += `*Date:* ${formattedDate}\n`;
+    whatsappMessage += `*Time:* ${time}\n`;
+
+    if (message) {
+      whatsappMessage += `*Additional Notes:* ${message}\n`;
+    }
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappURL = `https://wa.me/917032985242?text=${encodedMessage}`;
+
+    window.location.href = whatsappURL;
   });
-
-  let whatsappMessage = `*Booking Request from Yogita Makeovers Website*\n\n`;
-  whatsappMessage += `*Name:* ${name}\n`;
-  whatsappMessage += `*Phone:* ${phone}\n`;
-  whatsappMessage += `*Service:* ${service}\n`;
-  whatsappMessage += `*Date:* ${formattedDate}\n`;
-  whatsappMessage += `*Time:* ${time}\n`;
-
-  if (message) {
-    whatsappMessage += `*Additional Notes:* ${message}\n`;
-  }
-
-  const encodedMessage = encodeURIComponent(whatsappMessage);
-  const whatsappURL = `https://wa.me/917032985242?text=${encodedMessage}`;
-
-  window.open(whatsappURL, '_blank');
-});
+}
 
 // Function to fetch data from Google Sheets using CSV link
 async function fetchCSVData(sheetURL) {
@@ -75,10 +83,10 @@ async function fetchCSVData(sheetURL) {
     return rows.map(row => {
       const columns = row.split(",");
       return {
-        title: columns[0].replace(/"/g, ''),
-        category: columns[1].replace(/"/g, ''),
-        imageUrl: columns[2].replace(/"/g, ''),
-        redirectUrl: columns[3].replace(/"/g, '')
+        title: columns[0]?.replace(/"/g, '') || '',
+        category: columns[1]?.replace(/"/g, '') || '',
+        imageUrl: columns[2]?.replace(/"/g, '') || '',
+        redirectUrl: columns[3]?.replace(/"/g, '') || ''
       };
     });
   } catch (error) {
@@ -115,6 +123,13 @@ async function populateGallery() {
     galleryContainer.appendChild(galleryItem);
   });
 }
+
+// Prevent flickering by fixing image height before loading
+const images = document.querySelectorAll('.gallery-img');
+images.forEach(img => {
+  img.style.minHeight = '200px'; // Adjust as per your design
+  img.style.objectFit = 'cover';
+});
 
 // Populate reels
 async function populateReels() {
