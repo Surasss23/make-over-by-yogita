@@ -138,12 +138,7 @@ async function fetchFromSheet(sheetURL) {
 
     return rows.map(row => {
       const columns = row.split(',');
-      return {
-        title: columns[0],
-        category: columns[1] || '',
-        description: columns[2] || '',
-        mediaUrl: columns[3] ? columns[3].trim() : null
-      };
+      return columns.map(col => col.replace(/"/g, '').trim());
     });
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -154,24 +149,25 @@ async function fetchFromSheet(sheetURL) {
 // Populate Gallery Section
 async function populateGallery() {
   const galleryContainer = document.getElementById('gallery-container');
-  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pub?output=csv');
-
+  const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSwKmK_a30EZ5qD2Y14wQ9zTTnqYNFwM2--XIZ94Ae7BSgaK6yftdAW92bfOw17xrLpT5eTJgumfzPm/pubhtml');
+  
   if (data.length === 0) {
     galleryContainer.innerHTML = '<p class="no-data">No gallery items found.</p>';
     return;
   }
-  
+
   galleryContainer.innerHTML = '';
-  
-  data.forEach(item => {
+
+  data.forEach(([title, category, embedUrl]) => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     
     galleryItem.innerHTML = `
-      <img src="${item.mediaUrl}" alt="${item.title}" class="gallery-image" onerror="this.src='fallback.jpg';"/>
-      <div class="gallery-title">${item.title}</div>
-      <p>${item.description}</p>
-      <small>${item.category}</small>
+      <iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>
+      <div class="gallery-title">
+        <h3>${title}</h3>
+        <p>${category}</p>
+      </div>
     `;
     galleryContainer.appendChild(galleryItem);
   });
@@ -181,32 +177,30 @@ async function populateGallery() {
 async function populateReels() {
   const reelsContainer = document.getElementById('reels-container');
   const data = await fetchFromSheet('https://docs.google.com/spreadsheets/d/e/2PACX-1vSaAeNrBUirVq06nS0basFdmTBsFJrzqHVKnjPsffZ2lHlgvu3g0c1g524XEujFIdD0e5Mh6uJP5Kyz/pub?output=csv');
-
+  
   if (data.length === 0) {
     reelsContainer.innerHTML = '<p class="no-data">No reels found.</p>';
     return;
   }
 
   reelsContainer.innerHTML = '';
-  
-  data.forEach(item => {
+
+  data.forEach(([title, description, embedUrl]) => {
     const reelItem = document.createElement('div');
     reelItem.className = 'reel-item';
-    
+
     reelItem.innerHTML = `
-      <a href="${item.mediaUrl}" target="_blank">
-        <i class="fas fa-video reel-placeholder-icon"></i>
-      </a>
+      <iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>
       <div class="reel-title">
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
+        <h3>${title}</h3>
+        <p>${description}</p>
       </div>
     `;
     reelsContainer.appendChild(reelItem);
   });
 }
 
-// Initialize the page
+// Initialize
 window.addEventListener('DOMContentLoaded', () => {
   populateGallery();
   populateReels();
