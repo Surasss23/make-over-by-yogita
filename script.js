@@ -53,13 +53,6 @@ document.getElementById("appointment-form").addEventListener("submit", function(
   window.open(whatsappURL, '_blank');
 });
 
-// Convert to embed link for Instagram
-function convertToEmbed(url) {
-  if (url.includes('instagram.com/p/') || url.includes('instagram.com/reel/')) {
-    return `<iframe src="${url}" frameborder="0" allowfullscreen></iframe>`;
-  }
-  return `<p>Invalid Instagram URL</p>`;
-}
 
 // Fetch data from Google Sheets
 async function fetchAndDisplayData(sheetURL, containerId) {
