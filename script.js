@@ -158,34 +158,34 @@ function setupGallery() {
   
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1503305189797-32c5cb3b6693',
+      src: 'https://i.ibb.co/NXss8K7/image.png',
       title: 'Bridal Makeup',
       category: 'Wedding'
     },
     {
-      src: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8',
+      src: 'https://i.ibb.co/DfKrvR6Y/image.png',
       title: 'Party Makeup',
-      category: 'Event'
+      category: 'Wedding'
     },
     {
-      src: 'https://images.unsplash.com/photo-1516914589923-f105f1535f88',
+      src: 'https://i.ibb.co/9mZJVYgg/image.png',
       title: 'HD Makeup',
       category: 'Professional'
     },
     {
-      src: 'https://images.unsplash.com/photo-1526045478516-99145907023c',
+      src: 'https://i.ibb.co/f7Sykr8/image.png',
       title: 'Natural Look',
       category: 'Everyday'
     },
     {
-      src: 'https://images.unsplash.com/photo-1588367166326-dd08e9134be0',
+      src: 'https://i.ibb.co/VcJbQkmB/image.png',
       title: 'Engagement Makeup',
       category: 'Engagement'
     },
     {
-      src: 'https://images.unsplash.com/photo-1465463181267-1fb25be32990',
-      title: 'Fashion Makeup',
-      category: 'Fashion'
+      src: 'https://i.ibb.co/RkXTxyLK/image.png',
+      title: 'Bridal Makeup',
+      category: 'Wedding'
     }
   ];
   
@@ -215,34 +215,34 @@ function setupReels() {
   
   const reelsData = [
     {
-      thumbnail: 'https://i.ibb.co/p67Bb74L/image.png',
+      thumbnail: 'https://i.ibb.co/DgwqG4G5/image.png',
       title: 'Bridal Makeup Tutorial',
-      link: 'https://www.instagram.com/'
+      link: 'https://www.instagram.com/reel/DHDwXRnojX6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
-      thumbnail: 'https://images.unsplash.com/photo-1560932503-5a9e5f0858b9',
+      thumbnail: 'https://i.ibb.co/zVx2Jd7X/image.png',
       title: 'Evening Glam Transformation',
-      link: 'https://www.instagram.com/'
+      link: 'https://www.instagram.com/reel/DHVz6-TSnr-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
-      thumbnail: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796',
+      thumbnail: 'https://i.ibb.co/xWtd43W/image.png',
       title: 'Natural Makeup Look',
-      link: 'https://www.instagram.com/'
+      link: 'https://www.instagram.com/reel/DGxtPvwSQDX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
-      thumbnail: 'https://images.unsplash.com/photo-1604872441539-ef1db9b25f92',
+      thumbnail: 'https://i.ibb.co/K3GWSh3/image.png',
       title: 'Behind The Scenes',
-      link: 'https://www.instagram.com/'
+      link: 'https://www.instagram.com/reel/DEFU6OASbm9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
-      thumbnail: 'https://images.unsplash.com/photo-1607083681678-52733140f93a',
-      title: 'Product Review',
-      link: 'https://www.instagram.com/'
+      thumbnail: 'https://i.ibb.co/jtQCVkp/image.png',
+      title: 'Makeover',
+      link: 'https://www.instagram.com/reel/DHLiaUHIHkg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
-      thumbnail: 'https://images.unsplash.com/photo-1522337094846-8a818192de1f',
+      thumbnail: 'https://i.ibb.co/TM75B7hd/image.png',
       title: 'Client Testimonial',
-      link: 'https://www.instagram.com/'
+      link: 'https://www.instagram.com/reel/DBRCg_9hc-M/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     }
   ];
   
