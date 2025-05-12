@@ -1,11 +1,12 @@
+//note: java script main ched chad mat karna because ye manually nhi likha gaya hai so if you are copiying code dekh samaj kar copy karna maine khud 20 baar chatgpt kiya hai for some reasons so please samjho dekho sikho and then karo
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Lucide icons
+ 
   lucide.createIcons();
   
-  // Set current year in footer
+
   document.getElementById('current-year').textContent = new Date().getFullYear();
   
-  // Mobile menu functionality
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   
@@ -15,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Close mobile menu when clicking on a link
   const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
   mobileMenuLinks.forEach(link => {
     link.addEventListener('click', function() {
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Navbar background on scroll
   const navbar = document.getElementById('navbar');
   
   function toggleNavbarBackground() {
@@ -35,9 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   window.addEventListener('scroll', toggleNavbarBackground);
-  toggleNavbarBackground(); // Initial check
+  toggleNavbarBackground(); 
   
-  // Scroll to top button
   const scrollToTopBtn = document.getElementById('scroll-to-top');
   
   function toggleScrollToTopBtn() {
@@ -49,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   window.addEventListener('scroll', toggleScrollToTopBtn);
-  toggleScrollToTopBtn(); // Initial check
+  toggleScrollToTopBtn(); 
   
   if (scrollToTopBtn) {
     scrollToTopBtn.addEventListener('click', function() {
@@ -60,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Smooth scrolling for anchor links
+ 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
@@ -74,14 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
           });
           
-          // Update URL without page jump
+     
           history.pushState({}, '', href);
         }
       }
     });
   });
   
-  // Helper function to scroll to a section
+  
   window.scrollToSection = function(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -89,20 +87,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
   
-  // Set minimum date for date picker to today
+ 
   const dateInput = document.getElementById('date');
   if (dateInput) {
     const today = new Date().toISOString().split('T')[0];
     dateInput.setAttribute('min', today);
   }
   
-  // Setup gallery
+
   setupGallery();
   
-  // Setup reels
+
   setupReels();
-  
-  // Booking form submission
+
   const bookingForm = document.getElementById('booking-form');
   
   if (bookingForm) {
@@ -121,13 +118,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
-      // Format date for better readability
+     
       const formatDate = function(dateString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
       };
       
-      // Format the WhatsApp message
+  
       const message = `Hello Yogita! 👋
 I'd like to book a makeup appointment:
 
@@ -139,18 +136,16 @@ ${notes ? `Notes: ${notes}` : ""}
 
 Thank you!`;
       
-      // Create WhatsApp URL with phone number and encoded message
-      // Directly open WhatsApp with the message
-      // Note: Using encodeURIComponent for proper URL encoding
+     
       const whatsappUrl = `https://wa.me/917032985242?text=${encodeURIComponent(message)}`;
       
-      // Open in new tab (this is more reliable than window.location)
+     
       window.open(whatsappUrl, "_blank");
     });
   }
 });
 
-// Gallery setup
+
 function setupGallery() {
   const galleryContainer = document.querySelector('.gallery-grid');
   
@@ -285,6 +280,6 @@ function setupReels() {
     reelsContainer.appendChild(item);
   });
   
-  // Initialize any new icons that were added dynamically
+
   lucide.createIcons();
 }
