@@ -214,6 +214,24 @@ function setupReels() {
   if (!reelsContainer) return;
   
   const reelsData = [
+{
+      thumbnail: 'https://i.ibb.co/Kjrwqs4M/image.png',
+      title: '',
+      link: 'https://www.instagram.com/reel/DJRWDIWSdDn/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
+    },
+
+    {
+      thumbnail: 'https://i.ibb.co/pByxz5GR/image.png',
+      title: 'Client Testimonial',
+      link: 'https://www.instagram.com/reel/DI6YbTISXxS/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
+    },
+    
+    {
+      thumbnail: 'https://i.ibb.co/mChHsmvC/image.png',
+      title: '',
+      link: 'https://www.instagram.com/reel/DI3kdxaSz5c/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
+    },
+
     {
       thumbnail: 'https://i.ibb.co/DgwqG4G5/image.png',
       title: 'Bridal Makeup Tutorial',
